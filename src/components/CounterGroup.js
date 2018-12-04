@@ -3,11 +3,11 @@ import Counter from './Counter.js'
 import { connect } from "react-redux";
 
 class CounterGroup extends Component {
-    state={
+    // state={
         // counterSum:0,
-        counters:new Array(parseInt(this.props.defaultCount)).fill(0).map(()=>{return {number:0,id: new Date().getTime()+Math.random() }}),
+        // counters:new Array(parseInt(this.props.defaultCount)).fill(0).map(()=>{return {number:0,id: new Date().getTime()+Math.random() }}),
         // counterArr: new Array(parseInt(this.props.defaultCount)).fill(0)
-    }
+    // }
 
     counterUpdateCallback= changedNum =>{
         // this.setState({counterSum:this.state.counterSum + changedNum})
@@ -18,30 +18,38 @@ class CounterGroup extends Component {
     }
 
     increaseUpdate = (changedNum,id) =>{
-        const counters=this.props.counterArr.map(counterItem => {
-            if(counterItem.id===id){
-                return {number:counterItem.number + changedNum, id:id};
-            }else{
-                return counterItem;
-            }
-        })
-        this.setState({counters:counters})
+        // const counters=this.props.counterArr.map(counterItem => {
+        //     if(counterItem.id===id){
+        //         return {number:counterItem.number + changedNum, id:id};
+        //     }else{
+        //         return counterItem;
+        //     }
+        // })
+        // this.setState({counters:counters})
+        this.props.dispatch({
+            type: "INCREASE",
+            payload:{changedNum,id}
+      }); 
     }
 
     decreaseUpdate = (changedNum,id) =>{
-        const counters=this.props.counterArr.map(counterItem => {
-            if(counterItem.id===id){
-                return {number:counterItem.number - changedNum, id:id};
-            }else{
-                return counterItem;
-            }
-        })
-        this.setState({counters:counters})
+        // const counters=this.props.counterArr.map(counterItem => {
+        //     if(counterItem.id===id){
+        //         return {number:counterItem.number - changedNum, id:id};
+        //     }else{
+        //         return counterItem;
+        //     }
+        // })
+        // this.setState({counters:counters})
+        this.props.dispatch({
+            type: "DECREASE",
+            payload:{changedNum,id}
+      }); 
     }
 
-    updateInput=(event)=>{
-        this.setState({input:event.target.value})
-    }
+    // updateInput=(event)=>{
+    //     this.setState({input:event.target.value})
+    // }
 
     regenerateCounters =()=> {
         // this.setState({
