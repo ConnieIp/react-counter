@@ -9,13 +9,6 @@ export default class CounterGroup extends Component {
         // counterArr: new Array(parseInt(this.props.defaultCount)).fill(0)
     // }
 
-    counterUpdateCallback= changedNum =>{
-        // this.setState({counterSum:this.state.counterSum + changedNum})
-        this.props.dispatch({
-            type: "COUNTERSUM",
-            payload: changedNum
-      }); 
-    }
 
     increaseUpdate = (changedNum,id) =>{
         // const counters=this.props.counterArr.map(counterItem => {

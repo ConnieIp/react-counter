@@ -5,5 +5,14 @@ const mapStateToProps = state => ({
     counterSum: state.counterSum,
     counterArr: state.counterArr
   });
-  
-  export default connect(mapStateToProps)(CounterGroup);
+
+const mapDispatchToProps = dispatch => ({
+    counterUpdateCallback: changedNum =>dispatch({
+            type: "COUNTERSUM",
+            payload: changedNum
+    })
+
+});
+
+
+  export default connect(mapStateToProps,mapDispatchToProps)(CounterGroup);
