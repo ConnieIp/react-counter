@@ -1,5 +1,6 @@
 const initialState = {
-    counterSum:0
+    counterSum:0,
+    counterArr:[]
 }
 
 export default (state = initialState, action) => {
@@ -9,6 +10,8 @@ export default (state = initialState, action) => {
     return {counterSum:state.counterSum +  action.payload}
   case "CLEARSUM":
     return {counterSum: 0}
+  case "GENERATECOUNTERS":
+    return {counterArr:new Array(parseInt(action.payload)).fill(0).map(()=>{return {number:0,id:new Date().getTime()+Math.random()};})}  
 
   default:
     return state
