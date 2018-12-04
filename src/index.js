@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
 import * as serviceWorker from './serviceWorker';
-import CounterGroup from './components/CounterGroup';
+import CounterGroup from './container/ContainerGroup';
 import reducer from './reducer';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux'

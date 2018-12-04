@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Counter from './Counter.js'
 import { connect } from "react-redux";
 
-class CounterGroup extends Component {
+export default class CounterGroup extends Component {
     // state={
         // counterSum:0,
         // counters:new Array(parseInt(this.props.defaultCount)).fill(0).map(()=>{return {number:0,id: new Date().getTime()+Math.random() }}),
@@ -105,12 +105,3 @@ class CounterGroup extends Component {
 //     )
 //   }
 }
-
-const mapStateToProps = state => ({
-    counterSum: state.counterSum,
-    counterArr: state.counterArr
-  });
-  
-
-  connect(mapStateToProps)(CounterGroup)
-  export default connect(mapStateToProps)(CounterGroup);
