@@ -12,6 +12,7 @@ export default class CounterGroup extends Component {
     regenerateCounters=()=>{
         this.props.generateCounters(this.refs.countInput.value);
         this.props.clearCounterSum();
+        this.refs.countInput.value=''
     }
     
     // updateInput=(event)=>{
