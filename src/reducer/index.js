@@ -7,6 +7,8 @@ export default (state = initialState, action) => {
 
   case "COUNTERSUM":
     return {counterSum:state.counterSum +  action.payload}
+  case "CLEARSUM":
+    return {counterSum: 0}
 
   default:
     return state

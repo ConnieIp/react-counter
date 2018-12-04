@@ -18,7 +18,6 @@ class CounterGroup extends Component {
     }
 
     increaseUpdate = (changedNum,id) =>{
-        console.log(this.state.counters)
         const counters=this.state.counters.map(counterItem => {
             if(counterItem.id===id){
                 return {number:counterItem.number + changedNum, id:id};
@@ -48,8 +47,12 @@ class CounterGroup extends Component {
         this.setState({
             counters:new Array(parseInt(this.refs.countInput.value)).fill(0).map(()=>{return {number:0,id:new Date().getTime()+Math.random()};}),
             counterArr: new Array(parseInt(this.refs.countInput.value)).fill(0),
-            counterSum: 0
+            // counterSum: 0
         });
+        this.props.dispatch({
+            type: "CLEARSUM"
+      }); 
+      this.refs.countInput.value=''
       }
       
       
