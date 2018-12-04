@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 import Counter from './Counter.js'
+import { connect } from "react-redux";
 
-export default class CounterGroup extends Component {
+class CounterGroup extends Component {
     state={
-        counterSum:0,
+        // counterSum:0,
         counters:new Array(parseInt(this.props.defaultCount)).fill(0).map(()=>{return {number:0,id: new Date().getTime()+Math.random() }}),
         counterArr: new Array(parseInt(this.props.defaultCount)).fill(0)
     }
 
     counterUpdateCallback= changedNum =>{
-        this.setState({counterSum:this.state.counterSum + changedNum})
+        // this.setState({counterSum:this.state.counterSum + changedNum})
+        this.props.dispatch({
+            type: "COUNTERSUM",
+            payload: changedNum
+      }); 
     }
 
     increaseUpdate = (changedNum,id) =>{
@@ -21,7 +26,6 @@ export default class CounterGroup extends Component {
                 return counterItem;
             }
         })
-        console.log(counters)
         this.setState({counters:counters})
     }
 
@@ -47,18 +51,23 @@ export default class CounterGroup extends Component {
             counterSum: 0
         });
       }
+      
+      
 
     render() {
         return (
             <div>
                 {this.state.counters.map(counterItem=><Counter 
+                // key={counterItem.id}
                 id={counterItem.id}
                 onCounterValueChanged={this.counterUpdateCallback} 
                 onIncreased={this.increaseUpdate}
                 counterNum={counterItem.number}
                 onDecreased={this.decreaseUpdate}/>)}
 
-                <span>Sum: {this.state.counterSum}</span>
+                {/* <span>Sum: {this.state.counterSum}</span> */}
+                <span>Sum: {this.props.counterSum}</span>
+
 
                 <br/>
                 <input type="text" ref="countInput" />
@@ -81,3 +90,11 @@ export default class CounterGroup extends Component {
 //     )
 //   }
 }
+
+const mapStateToProps = state => ({
+    counterSum: state.counterSum
+  });
+  
+
+  connect(mapStateToProps)(CounterGroup)
+  export default connect(mapStateToProps)(CounterGroup);
